@@ -1,202 +1,110 @@
-# Hackathon Submissions Platform Template
-
-Here's a template repo for you to generate a submission platform for your hackathon for free on GitHub.
+# UM Internal Hackathon 
 
 ## Table Of Contents
 
-- [Hackathon Submissions Platform Template](#hackathon-submissions-platform-template)
-  * [Steps To Use This Repo](#steps-to-use-this-repo)
-  * [Exporting Submission Links](#exporting-submission-links)
-- [XYZ Hackathon: Example Hackathon Description](#xyz-hackathon-example-hackathon-description)
+- [Internal Hackathon]: 
   * [About The Hackathon](#about-the-hackathon)
   * [Timeline](#timeline)
-  * [Tracks](#tracks)
   * [Prizes](#prizes)
   * [Judging Parameters](#judging-parameters)
   * [How To Submit Your Project?](#how-to-submit-your-project)
     + [Video Tutorial - How To Submit Your Project?](video-tutorial---how-to-submit-your-project)
   * [Rules and Code of Conduct](#rules-and-code-of-conduct)
 
-## Steps To Use This Repo 
-
-
-* Click on [**Use this template**](https://github.com/adityaoberai/hackathon-submissions-repo-template/generate) to generate a copy of the repository for your hackathon.
-<a href="https://github.com/adityaoberai/hackathon-submissions-repo-template/generate" target="_blank">
-  <img width="94" alt="image" src="https://user-images.githubusercontent.com/31401437/170708931-be980535-a6fe-4540-a8d1-9515059f5d9c.png">
-</a>
-
-* Visit the [Issue Form for Hackathon Submissions](.github/ISSUE_TEMPLATE/submission.yaml) and edit it to your comfort. [*(Guide)*](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-issue-forms)
-
-> *Note: In order to use the Hackathon Submissions Issue Form, your repository must be public.*
-
-* Add new **Issue Labels** (and remove the existing ones) so that the list looks as follows. [*(Guide)*](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels)
-<img width="921" alt="image" src="https://user-images.githubusercontent.com/31401437/170709980-6b54a747-789c-41a5-9ed0-f398bbb767b9.png">
-
-* Edit the **Example Hackathon Description** to add/update all the necessary details regarding your hackathon.
-
-* Edit the [Code of Conduct](CODE_OF_CONDUCT.md) to add details of the organizers and the hackathon.
-
-* Review (and update) the [Rules](RULES.md) to add your own set of rules for the hackathon.
-
-* Remove the contents of the Readme before the hackathon description.
-
-## Exporting Submission Links 
-
-If you want export all submission links to a CSV file, follow the following steps:
-
-* Install `Python 3.x` on your system.
-
-* Create a folder to store your submissions CSV.
-
-* Enter the folder, create a file `script.py` and add the following code:
-
-```python
-"""
-Inspired by script the created by prateek032: https://gist.github.com/prateek032/06273e179bb034800c61
-"""
-
-import csv
-import requests
-import json
-
-REPO = ""  # format is username/repo
-ISSUES_FOR_REPO_URL = "https://api.github.com/repos/%s/issues" % REPO
-arg = "?state=all"
-
-# Since the hackathon repos must be public (to allow issue forms), username and password are not necessary.
-
-
-def write_issues(r):
-    "output a list of issues to csv"
-    if not r.status_code == 200:
-        raise Exception(r.status_code)
-    for issue in r.json():
-        Tag = []
-        labels = issue["labels"]
-        for label in labels:
-            Tag.append(label["name"])
-
-        if "issues" in issue["html_url"]:
-            csvout.writerow(
-                [
-                    issue["number"],
-                    issue["title"],
-                    Tag,
-                    issue["state"],
-                    issue["created_at"],
-                    issue["html_url"],
-                ]
-            )
-
-
-r = requests.get(ISSUES_FOR_REPO_URL + arg)
-
-csvfile = "%s-issues.csv" % (REPO.replace("/", "-"))
-csvfileo = open(csvfile, "w")
-csvout = csv.writer(csvfileo)
-csvout.writerow(["Id", "Title", "Tag", "State", "Open Date", "URL"])
-
-write_issues(r)
-
-# more pages? examine the "link" header returned
-if "link" in r.headers:
-    pages = dict(
-        [
-            (rel[6:-1], url[url.index("<") + 1 : -1])
-            for url, rel in [link.split(";") for link in r.headers["link"].split(",")]
-        ]
-    )
-
-    while "last" in pages and "next" in pages:
-        r = requests.get(pages["next"], auth=AUTH)
-        write_issues(r)
-        if pages["next"] == pages["last"]:
-            break
-        pages = dict(
-            [
-                (rel[6:-1], url[url.index("<") + 1 : -1])
-                for url, rel in [
-                    link.split(";") for link in r.headers["link"].split(",")
-                ]
-            ]
-        )
-
-csvfileo.close()
-```
-
-* Open your shell in the same folder and run the command `pip install requests` followed by `python script.py`.
-
-* You should have a CSV file with all the submissions in your folder.
-
----
-
-# XYZ Hackathon: Example Hackathon Description
-
 ## About The Hackathon
 
-XYZ Hackathon is a 48-hour digital hackathon where young minds possessing a passion for solving real-life problems come together to build innovative solutions. Whether you are a beginner or an expert coder, here is the perfect chance to hone your skills and witness the competitive yet inclusive developer community around you!
+UM Internal Hackathon 2024 is a university hackathon organized by Persatuan Komputer Universiti Malaya (PEKOM) and Faculty of Computer Science and Information Technology, focusing on Data Science and Machine Learning.
 
 Learn new technologies, enhance your team management and presentation skills, and get mentored by experts- all in one place!
 
 ## Timeline
 
-* **Start Date and Time:** 1st January 2022 at 11:00 AM IST
-* **Start Date and Time:** 3rd January 2022 at 11:00 AM IST
-
-## Tracks
-
-* Track 1
-
-> Description of Track 1
-
-* Track 2
-
-> Description of Track 2
-
-* Track 3
-
-> Description of Track 3
-
-* Track 4
-
-> Description of Track 4
+* **Start Date and Time:** 
+* **Start Date and Time:** 
 
 ## Prizes
 
 * **1st Prize**
 
->* Cash worth $500
->* XYZ Hackathon Swags
+>* 
 
 
 * **2nd Prize**
 
->* Cash worth $300
->* XYZ Hackathon Swags
+>* 
 
 * **3rd Prize**
 
->* Cash worth $100
->* XYZ Hackathon Swags
+>*
 
 ## Judging Parameters
+## 5 mins video
+* **General Criteria *(45%)* **
+1. Project Clarity *(20%)*
 
-1. Project Completeness and Functionality *(25%)*
+> * Does the problem is clearly defined and directly related to the theme?
 
-> * Does the project stand as an individual end-to-end product?
-> * Is it a functioning solution that can scale in the real world?
+2. Solution Overview *(25%)*
 
-2. Creativity in Design *(25%)*
+> * Does the solution is innovative, clearly explained, and aligns well with the problem?
 
-> * Does the project bring innovations in design and create comfortable user experiences?
+* **Technical Criteria *(40%)* **
+1. Feasibility *(20%)*
 
-3. Innovation in Idea *(25%)*
+> * Does the solution is practical, realistic, and achievable within the competition’s constraints?
 
-> * Does the project attempt to solve a previously unsolved problem?
+2. Innovation *(20%)*
 
-4. Social Impact *(25%)*
+> * Does the solution is highly innovative and introduces a fresh perspective or approach?
 
-> * Does the project have an impact on people's lives at a social level?
+* **Other Criteria *(15%)* **
+1. Presentation *(20%)*
+
+> * Does the video is engaging, well-structured, and effectively communicates the idea with good quality?
+
+## Finalist
+## General Criteria *(40%)*
+1. Introduction *(10%)*
+
+> * Does the problem statement and objectives are clearly described, directly related to the theme, and thoroughly explained?
+
+2. Creativity *(10%)*
+
+> * Does the project demonstrates exceptional creativity, presenting an original and innovative solution?
+
+3. Usability *(10%)*
+
+> * Does the solution is highly user-friendly, with an intuitive and accessible interface?
+
+4. Presentation *(10%)*
+
+> * Does the presentation is clear, well-structured, and engaging, effectively covering all keypoints
+
+## Technical Criteria *(40%)*
+1. Technical Achievement *(15%)*
+
+> * Does the code is highly optimized and well-structured, using advanced techniques and relevant technologies effectively?
+
+2. Model Effectiveness *(15%)*
+
+> * Does the model performs excellently (above 80%), achieving high accuracy with efficient use of resources, training, and inference?
+
+3. Sustainability & Maintenance Potential *(10%)*
+
+> * Does the project is highly maintainable, with well-organized, modular code and thorough documentation, allowing for easy updates and extensions?
+
+## Other Criteria *(20%)*
+1. User Interface (UI) & User Experience (UX) *(10%)*
+
+> * Does the interface is visually appealing, intuitive, and well-organized, providing a seamless and pleasant user experience?
+
+2. Architecture Completeness *(5%)*
+
+> * Does the architecture is robust and well-designed, making full and efficient use of available resources and components?
+
+3. Documentation & Code Readability *(5%)*
+
+> * Does the documentation is thorough, clear, and well-structured. The code is clean, well-organized, and easy to follow, with proper comments explaining logic?
 
 ## How To Submit Your Project?
 
